@@ -14,6 +14,7 @@ class ShowJob extends Component{
     //     return fruits.filter(function(el) {
     //         return el.toLowerCase().indexOf(query.toLowerCase()) > -1;
     //     }
+
     changeShow(event) {
         this.setState({
             idChange: event.target.value
@@ -62,7 +63,8 @@ class ShowJob extends Component{
             //     }
             // })
 
-            const elementJob = this.props.onShow.map((job,index)=> {
+            // eslint-disable-next-line array-callback-return
+            const elementJob = this.props.onShow.map((job,index) => {
                 const classStatus = job.sltGender === '0' ? "label label-default" : "label label-primary";
                 const text = job.sltGender === '0' ? "Ẩn":"Kích Hoạt";
                 var id = 0;
