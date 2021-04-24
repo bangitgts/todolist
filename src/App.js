@@ -9,7 +9,9 @@ class App extends Component{
     this.state ={
           product:[
             {nameJob: 'abc',
-            sltGender: 1}
+            sltGender: '1'},
+            {nameJob: 'hai',
+            sltGender: '0'}
           ]
         }
    // this.onReceivenamejob = this.onReceivenamejob.bind(this);

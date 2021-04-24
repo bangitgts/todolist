@@ -6,7 +6,7 @@ class AddJob extends Component{
         super(props);
         this.state={
             nameJob: '',
-            sltGender: ''
+            sltGender: '1'
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
