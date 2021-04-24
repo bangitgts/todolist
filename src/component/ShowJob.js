@@ -4,12 +4,13 @@ class ShowJob extends Component{
         super(props);
         this.state = {
             idChange : '-1',
-            idLabel: 0
+            idLabel: 100
         }
         this.changeShow = this.changeShow.bind(this);
         this.SortLabel = this.SortLabel.bind(this);
     }
-      // filterItems(query) {
+  
+    // filterItems(query) {
     //     return fruits.filter(function(el) {
     //         return el.toLowerCase().indexOf(query.toLowerCase()) > -1;
     //     }
@@ -17,13 +18,13 @@ class ShowJob extends Component{
         this.setState({
             idChange: event.target.value
         })
-        console.log(this.state.idChange)       
+        
     }
     SortLabel(event){
+        
         this.setState({
             idLabel: event.target.value
         })
-        // console.log(this.state.idLabel)
     }
     render(){
       
@@ -52,21 +53,44 @@ class ShowJob extends Component{
         //     )
         // })
         
+            // const searchJob  = this.props.onShow.map((searchCV)=>{
+            //     if(searchCV.nameJob.search(this.state.idLabel) !==(-1)){
+            //         console.log('dung');
+            //     }
+            //     else{
+            //         console.log('sai')
+            //     }
+            // })
 
-            for(let kiemtra of this.props.onShow)
-            {
-                //   let testKey = kiemtra.search(flag);
-                //   console.log(testKey);
-                console.log(kiemtra.nameJob);   
-                let flag = kiemtra.nameJob.search(this.state.idLabel);
-                console.log(flag)
-            }
-        const elementJob = this.props.onShow.map((job,index)=> {
-            const classStatus = job.sltGender === '0' ? "label label-default" : "label label-primary";
-            const text = job.sltGender === '0' ? "Ẩn":"Kích Hoạt";
-            var id = 0;
-            if(this.state.idChange ==='-1') {
-                return (
+            const elementJob = this.props.onShow.map((job,index)=> {
+                const classStatus = job.sltGender === '0' ? "label label-default" : "label label-primary";
+                const text = job.sltGender === '0' ? "Ẩn":"Kích Hoạt";
+                var id = 0;
+                if(job.nameJob.search(this.state.idLabel) === (-1)){
+                    console.log('abc');
+                    return (
+                    <tr>
+                        
+                                    {/* <td>{++id}</td>
+                                        <td>{job.nameJob}</td>
+                                        <td className="text-center">
+                                            <span className={classStatus}>
+                                                        {text}
+                                                    </span>
+                                        </td>
+                                        <td className="text-center">
+                                            <button type="button" className="btn btn-warning">
+                                                <span className="fa fa-pencil mr-5"></span>Sửa
+                                            </button>
+                                            &nbsp;
+                                            <button type="button" className="btn btn-danger">
+                                                <span className="fa fa-trash mr-5"></span>Xóa
+                                            </button>
+                                    </td> */}
+                        </tr>
+                    )
+                } if(this.state.idChange === '-1') {
+                  return (
                     <tr>
                                 <td>{++id}</td>
                                     <td>{job.nameJob}</td>
@@ -129,6 +153,9 @@ class ShowJob extends Component{
                     </tr>
                 )
             }
+            // if (job.nameJob.search(this.state.idLabel) === -1) {
+            //     console.log('abc');
+            // }
         })
 
         return(
@@ -147,7 +174,7 @@ class ShowJob extends Component{
                     <tr>
                         <td></td>
                         <td>
-                            <input onChange={this.SortLabel} type="text" className="form-control" />
+                            <input value={this.state.idLabel} onChange={this.SortLabel} onSubmit={this.SortLabel} type="text" className="form-control" />
                         </td>
                         <td>
                             <select onChange={this.changeShow} className="form-control">
