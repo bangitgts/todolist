@@ -15,11 +15,9 @@ class App extends Component{
           ]
         }
    }
- 
   onReceivenamejob =  (prams) => {
     const products = this.state.product;
     products.push(prams);
-    console.log(`prodcut 1 ${typeof products}`);
     this.setState(products);
   }
   getId = (prams) =>{
