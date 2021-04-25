@@ -31,7 +31,7 @@ class App extends Component{
          <div className="row">
           <AddJob onGetdata={this.onReceivenamejob} />
           <SortJob/>
-          <ShowJob onGetid={this.getId} onShow={this.state.product}/>
+          <ShowJob onGetedit={this.editText} onGetid={this.getId} onShow={this.state.product}/>
          </div>
       </div>
       )

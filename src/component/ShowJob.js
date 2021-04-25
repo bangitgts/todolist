@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import ContentEditable from 'react-contenteditable'
 class ShowJob extends Component{
     constructor(props){
         super(props);
@@ -6,7 +7,9 @@ class ShowJob extends Component{
             idChange : '-1',
             idLabel: '',
             idDel: '',
+            idEdit: false
         }
+        this.editText  = this.editText.bind(this);
         this.changeShow = this.changeShow.bind(this);
         this.SortLabel = this.SortLabel.bind(this);
         this.clickButton = this.clickButton.bind(this);
@@ -30,6 +33,17 @@ class ShowJob extends Component{
         this.setState({
             idLabel: event.target.value
         })
+    }
+    editText(event){
+        if(event.target.value === '0'){
+            console.log('abc');
+            this.setState({
+                idEdit: true
+            })
+        }else{
+            console.log('xyz')
+        }
+        console.log(event.target.value)
     }
     render(){
       
@@ -83,14 +97,14 @@ class ShowJob extends Component{
                   return (
                     <tr>
                                 <td>{id}</td>
-                                    <td>{job.nameJob}</td>
+                                    <td contentEditable={this.state.idEdit}>{job.nameJob}</td>
                                     <td className="text-center">
                                         <span className={classStatus}>
                                                     {text}
                                                 </span>
                                     </td>
                                     <td className="text-center">
-                                        <button type="button" className="btn btn-warning">
+                                        <button value={0} onClick={this.editText} type="button" className="btn btn-warning">
                                             <span className="fa fa-pencil mr-5"></span>Sửa
                                         </button>
                                         &nbsp;
@@ -108,14 +122,14 @@ class ShowJob extends Component{
                     <tr>
                     
                                 <td>{id}</td>
-                                    <td>{job.nameJob}</td>
+                                    <td contentEditable={this.state.idEdit} >{job.nameJob}</td>
                                     <td className="text-center">
                                         <span className={classStatus}>
                                                     {text}
                                                 </span>
                                     </td>
                                     <td className="text-center">
-                                        <button type="button" className="btn btn-warning">
+                                        <button  value={0} onClick={this.editText} type="button" className="btn btn-warning">
                                             <span className="fa fa-pencil mr-5"></span>Sửa
                                         </button>
                                         &nbsp;
@@ -132,14 +146,14 @@ class ShowJob extends Component{
                 return (
                     <tr>
                                 <td>{id}</td>
-                                    <td>{job.nameJob}</td>
+                                    <td contentEditable={this.state.idEdit} >{job.nameJob}</td>
                                     <td className="text-center">
                                         <span className={classStatus}>
                                                     {text}
                                                 </span>
                                     </td>
                                     <td className="text-center">
-                                        <button type="button" className="btn btn-warning">
+                                        <button onClick={this.editText} type="button" className="btn btn-warning">
                                             <span className="fa fa-pencil mr-5"></span>Sửa
                                         </button>
                                         &nbsp;
