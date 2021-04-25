@@ -4,10 +4,12 @@ class ShowJob extends Component{
         super(props);
         this.state = {
             idChange : '-1',
-            idLabel: 100
+            idLabel: '',
+            idDel: '',
         }
         this.changeShow = this.changeShow.bind(this);
         this.SortLabel = this.SortLabel.bind(this);
+        this.clickButton = this.clickButton.bind(this);
     }
   
     // filterItems(query) {
@@ -21,8 +23,10 @@ class ShowJob extends Component{
         })
         
     }
+    clickButton(index){
+       this.props.onGetid(index);
+     }
     SortLabel(event){
-        
         this.setState({
             idLabel: event.target.value
         })
@@ -67,34 +71,18 @@ class ShowJob extends Component{
             const elementJob = this.props.onShow.map((job,index) => {
                 const classStatus = job.sltGender === '0' ? "label label-default" : "label label-primary";
                 const text = job.sltGender === '0' ? "Ẩn":"Kích Hoạt";
-                var id = 0;
                 if(job.nameJob.search(this.state.idLabel) === (-1)){
                     console.log('abc');
                     return (
                     <tr>
-                        
-                                    {/* <td>{++id}</td>
-                                        <td>{job.nameJob}</td>
-                                        <td className="text-center">
-                                            <span className={classStatus}>
-                                                        {text}
-                                                    </span>
-                                        </td>
-                                        <td className="text-center">
-                                            <button type="button" className="btn btn-warning">
-                                                <span className="fa fa-pencil mr-5"></span>Sửa
-                                            </button>
-                                            &nbsp;
-                                            <button type="button" className="btn btn-danger">
-                                                <span className="fa fa-trash mr-5"></span>Xóa
-                                            </button>
-                                    </td> */}
-                        </tr>
-                    )
-                } if(this.state.idChange === '-1') {
+                    </tr>
+                    )}
+                 if(this.state.idChange === '-1') {
+                  let id = 0;
+                  id = id++;
                   return (
                     <tr>
-                                <td>{++id}</td>
+                                <td>{id}</td>
                                     <td>{job.nameJob}</td>
                                     <td className="text-center">
                                         <span className={classStatus}>
@@ -106,16 +94,20 @@ class ShowJob extends Component{
                                             <span className="fa fa-pencil mr-5"></span>Sửa
                                         </button>
                                         &nbsp;
-                                        <button type="button" className="btn btn-danger">
+                                        <button value={index} onClick={() => this.clickButton(index)}  type="button" className="btn btn-danger">
                                             <span className="fa fa-trash mr-5"></span>Xóa
                                         </button>
                                 </td>
                     </tr>
                 )
             } if (this.state.idChange ==='1' && job.sltGender ==='1') {
+                let id = 0;
+                id = id++;
+                
                 return (
                     <tr>
-                                <td>{++id}</td>
+                    
+                                <td>{id}</td>
                                     <td>{job.nameJob}</td>
                                     <td className="text-center">
                                         <span className={classStatus}>
@@ -127,16 +119,19 @@ class ShowJob extends Component{
                                             <span className="fa fa-pencil mr-5"></span>Sửa
                                         </button>
                                         &nbsp;
-                                        <button type="button" className="btn btn-danger">
+                                        <button value={index} onClick={() => this.clickButton(index)}  type="button" className="btn btn-danger">
                                             <span className="fa fa-trash mr-5"></span>Xóa
                                         </button>
                                 </td>
                     </tr>
                 )
             } if (this.state.idChange ==='0' && job.sltGender ==='0') {
+                let id = 0;
+                id = id++;
+
                 return (
                     <tr>
-                                <td>{++id}</td>
+                                <td>{id}</td>
                                     <td>{job.nameJob}</td>
                                     <td className="text-center">
                                         <span className={classStatus}>
@@ -148,7 +143,7 @@ class ShowJob extends Component{
                                             <span className="fa fa-pencil mr-5"></span>Sửa
                                         </button>
                                         &nbsp;
-                                        <button type="button" className="btn btn-danger">
+                                        <button value={index} onClick={() => this.clickButton(index)} type="button" className="btn btn-danger">
                                             <span className="fa fa-trash mr-5"></span>Xóa
                                         </button>
                                 </td>

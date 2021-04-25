@@ -1,5 +1,5 @@
 import './App.css';
-import { Component } from 'react';
+import React,{ Component } from 'react';
 import AddJob from './component/AddJob'
 import ShowJob from './component/ShowJob';
 import SortJob from './component/SortJob';
@@ -14,15 +14,18 @@ class App extends Component{
             sltGender: '0'}
           ]
         }
-   // this.onReceivenamejob = this.onReceivenamejob.bind(this);
    }
  
   onReceivenamejob =  (prams) => {
-    console.log(prams)
     const products = this.state.product;
-    products.push(prams)
+    products.push(prams);
+    console.log(`prodcut 1 ${typeof products}`);
     this.setState(products);
-    console.log(this.state);
+  }
+  getId = (prams) =>{
+    let a = this.state.product;
+    let removed = a.splice(prams,1);
+    this.setState(a);
   }
   render(){
     return(
@@ -30,7 +33,7 @@ class App extends Component{
          <div className="row">
           <AddJob onGetdata={this.onReceivenamejob} />
           <SortJob/>
-          <ShowJob onShow={this.state.product}/>
+          <ShowJob onGetid={this.getId} onShow={this.state.product}/>
          </div>
       </div>
       )
